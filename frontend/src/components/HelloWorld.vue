@@ -8,15 +8,21 @@ defineProps({
 </script>
 
 <template>
-  <div class="greetings">
-    <h3>{{msg}}</h3>
+  <div class="centered">
+    <img id="logo centered" src="..\assets\firesight.png">
+    <Button label="Primary" class="p-button-outlined centered" />
   </div>
 </template>
 
 <style scoped>
 
+
 h3 {
   font-size: 1.2rem;
+  text-align: center;
+}
+
+.centered {
   text-align: center;
 }
 
