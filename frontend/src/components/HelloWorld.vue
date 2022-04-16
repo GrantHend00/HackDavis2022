@@ -47,7 +47,10 @@ export default {
       {
         bounds: new google.maps.LatLngBounds(
           new google.maps.LatLng(38.5382, -121.7617)
-        )
+        ),
+        types: ['(cities)'],
+        componentRestrictions: {country: 'us'},
+        
       }
     );
 
