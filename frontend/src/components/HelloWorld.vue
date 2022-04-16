@@ -22,7 +22,7 @@ defineProps({
     </span>
     </div>
     <div class="centeredTopPadding">
-    <Button label="Primary" class="p-button-outlined centered" />
+    <Button @click="this.$router.push({ path: 'view' })" label="Primary" class="p-button-outlined centered" />
     </div>
 
 
