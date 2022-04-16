@@ -14,10 +14,14 @@ defineProps({
     <div class="centered">
     <span class="p-input-icon-left p-input-icon-right">
     <i class="pi pi-search" />
-    <input type="text" 
-    @input="$emit('update:city', $event.target.value)"
-    :value="city"
-    placeholder="Enter Location" ref="cityRef"/>
+    <input
+      id="locationInput" 
+      type="text" 
+      @input="$emit('update:city', $event.target.value)"
+      :value="city"
+      placeholder="Enter Location" 
+      ref="cityRef"
+    />
     <i class="pi pi-spin pi-spinner" />
     </span>
     </div>
@@ -37,29 +41,29 @@ defineProps({
 <script>
 
 export default {
-    data() {
-        return {
-            selectedCountry: null,
-            filteredCountries: null
-        }
-    },
-    setup() {
-      const cityRef = ref()
+  mounted() {
+    const autocomplete = new google.maps.places.Autocomplete(
+      this.$refs["cityRef"],
+      {
+        bounds: new google.maps.LatLngBounds(
+          new google.maps.LatLng(38.5382, -121.7617)
+        )
+      }
+    );
 
-      onMounted(() => {
-        const autocomplete = google.maps.places.Autocomplete(cityRef.value, {
-        types: ["address"],
-        fields: ["address_components"]
-        });
-      })
-      
-      return {cityRef}
-    }
+    autocomplete.addListener("place_changed", () => {
+      console.log(autocomplete.getPlace());
+    })
+  }
 }
+ 
 </script>
 
 <style scoped>
 
+#locationInput {
+  font-size: 40px;
+}
 
 h3 {
   font-size: 1.2rem;
