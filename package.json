@@ -1,0 +1,26 @@
+{
+  "name": "hackdavis2022",
+  "version": "1.0.0",
+  "description": "hack davis 2022 project Fire Sight",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrantHend00/HackDavis2022.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GrantHend00/HackDavis2022/issues"
+  },
+  "homepage": "https://github.com/GrantHend00/HackDavis2022#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
