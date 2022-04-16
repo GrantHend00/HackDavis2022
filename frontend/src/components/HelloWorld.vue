@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from '@vue/runtime-core';
 defineProps({
   msg: {
     type: String,
@@ -13,15 +14,49 @@ defineProps({
     <div class="centered">
     <span class="p-input-icon-left p-input-icon-right">
     <i class="pi pi-search" />
-    <InputText type="text" v-model="value3" placeholder="Enter Location" />
+    <input type="text" 
+    @input="$emit('update:city', $event.target.value)"
+    :value="city"
+    placeholder="Enter Location" ref="cityRef"/>
     <i class="pi pi-spin pi-spinner" />
     </span>
     </div>
     <div class="centeredTopPadding">
     <Button label="Primary" class="p-button-outlined centered" />
     </div>
-  </div>
+
+
+
+<!-- <AutoComplete :multiple="true" v-model="selectedCountries" 
+	:suggestions="filteredCountriesMultiple" 
+	@complete="searchCountryMultiple($event)" field="name" /> -->
+    </div>
+
 </template>
+
+<script>
+
+export default {
+    data() {
+        return {
+            selectedCountry: null,
+            filteredCountries: null
+        }
+    },
+    setup() {
+      const cityRef = ref()
+
+      onMounted(() => {
+        const autocomplete = google.maps.places.Autocomplete(cityRef.value, {
+        types: ["address"],
+        fields: ["address_components"]
+        });
+      })
+      
+      return {cityRef}
+    }
+}
+</script>
 
 <style scoped>
 
