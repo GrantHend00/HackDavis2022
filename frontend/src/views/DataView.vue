@@ -3,19 +3,37 @@ import Display from '../components/Display.vue';
 </script>
 
 <template>
-  <Display v-bind="{lat: $route.params.lat, lng: $route.params.lng }"/>
+  <div>
+    <Display v-bind="{lat: $route.params.lat, lng: $route.params.lng }"/>
+    <div class="centeredTopPadding">
+      <Button @click="this.$router.push({ name: 'home'})" label="Return" class="p-button-raised centered" />
+    </div>
+  </div>
 </template>
 
 <script>
   import { useRoute } from 'vue-router'; 
   export default {
+      beforeCreate: function() {
+          document.body.className = '';
+      },
       setup() {
-      const route = useRoute()
+        const route = useRoute()
 
-      onMounted(() => {
-        const lat = route.params.lat
-        const lng = route.params.lng
-      })
+        onMounted(() => {
+          const lat = route.params.lat
+          const lng = route.params.lng
+        })
     },
   }
 </script>
+
+<style scoped>
+
+.centeredTopPadding {
+    padding-top: 2%;
+    text-align: center;
+    background-color: white;
+}
+
+</style>

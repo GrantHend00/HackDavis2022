@@ -2,11 +2,6 @@
   <GoogleMap api-key="AIzaSyC2A2vs5L1PjZ9Q12G8fSfwxBUCTUvDyZU" style="width: 100%; height: 500px" :center="center" :zoom="15">
     <Marker :options="{ position: center }" />
   </GoogleMap>
-
-  <div class="centeredTopPadding">
-  <Button @click="this.$router.push({ name: 'home'})" label="Return" class="p-button-raised centered" />
-  </div>
-
 </template>
 
 <script>
@@ -30,13 +25,3 @@ export default defineComponent({
 });
 
 </script>
-
-<style scoped>
-
-.centeredTopPadding {
-    padding-top: 2%;
-    text-align: center;
-    background-color: white;
-}
-
-</style>
