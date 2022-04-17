@@ -12,7 +12,7 @@ import { onMounted } from '@vue/runtime-core';
   <div class="centered">
     <img class="logo centered medium" src="..\assets\firesight.png">
     <div class="centered margin-bottom">
-      <span class="p-input-icon-left p-input-icon-right">
+      <span v-if="!loading" class="p-input-icon-left p-input-icon-right">
         <i class="pi pi-search" />
           <input
             id="locationInput" 
@@ -24,6 +24,7 @@ import { onMounted } from '@vue/runtime-core';
           />
         <i class="pi pi-map-marker" />
       </span>
+      <i v-else class="pi pi-spin pi-spinner" style="color: white; font-size:4rem"/>
     </div>
     <div class="centeredTopPadding">
     
@@ -46,6 +47,11 @@ import axios from "axios";
 
 export default {
 
+  data() {
+    return {
+      loading: false
+      }
+  },
   mounted() {
     const autocomplete = new google.maps.places.Autocomplete(
       this.$refs["cityRef"],
@@ -65,6 +71,8 @@ export default {
 
       console.log("formatted address: ", place.formatted_address)
 
+      this.loading = true;
+
       const getCoords = new google.maps.Geocoder().geocode({
         address: place.formatted_address
       }).then((value) => {
@@ -74,6 +82,7 @@ export default {
         let longitude = value.results[0].geometry.location.lng()
 
         console.log("fetching risk prediction");
+
         axios
         .get("http://localhost:3000/predict/lat/"+latitude+"/long/"+longitude)
         .then(res => {
