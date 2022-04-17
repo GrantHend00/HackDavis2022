@@ -19,14 +19,14 @@ defineProps({
       type="text" 
       @input="$emit('update:city', $event.target.value)"
       :value="city"
-      placeholder="Enter Location" 
+      placeholder="Enter Location..." 
       ref="cityRef"
     />
-    <i class="pi pi-spin pi-spinner" />
+    <i class="pi pi-map-marker" />
     </span>
     </div>
     <div class="centeredTopPadding">
-    <Button @click="this.$router.push({ path: 'view' })" label="Primary" class="p-button-outlined centered" />
+    <Button @click="this.$router.push({ path: 'view' })" label="Calculate Risk" class="p-button-raised p-button-text p-button-primary centered" />
     </div>
 
 
@@ -76,8 +76,21 @@ export default {
 <style scoped>
 
 #locationInput {
+  box-shadow: 10px 5px 5px grey;
   font-size: 40px;
+  color: grey;
+  border: 0.1px double rgba(0,0,0,0.4);
+  padding-left: 5%;
+  outline: none;
+  text-align: left;
 }
+
+#locationInput::-webkit-input-placeholder{
+  transform: scale(0.5);
+  align-items: left;
+  color: grey;
+}
+
 
 h3 {
   font-size: 1.2rem;

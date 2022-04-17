@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "esbuild-darwin-arm64": "^0.14.36",
+    "gmaps-url-signer": "^1.0.0",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.5",
     "vue": "^3.2.31",
