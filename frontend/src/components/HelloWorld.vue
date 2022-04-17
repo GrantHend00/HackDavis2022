@@ -1,11 +1,11 @@
 <script setup>
 import { onMounted } from '@vue/runtime-core';
-defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
-})
+  defineProps({
+    msg: {
+      type: String,
+      required: true
+    }
+  })
 </script>
 
 <template>
@@ -26,7 +26,7 @@ defineProps({
     </span>
     </div>
     <div class="centeredTopPadding">
-    <Button @click="this.$router.push({ path: 'view' })" label="Calculate Risk" class="p-button-raised p-button-text p-button-primary centered" />
+    <Button @click="this.$router.push({ name: 'view', params: {lat: -1, lng: -1} })" label="Primary" class="p-button-outlined centered" />
     </div>
 
 
@@ -64,7 +64,10 @@ export default {
         address: place.formatted_address
       }).then((value) => {
         console.log("Latitue of Location: ", value.results[0].geometry.location.lat())
+        let latitude = value.results[0].geometry.location.lat()
         console.log("Longitude of Location: ", value.results[0].geometry.location.lng())
+        let longitude = value.results[0].geometry.location.lng()
+        this.$router.push({ name: 'view', params: {lat: latitude, lng: longitude} })
       })
 
     })
