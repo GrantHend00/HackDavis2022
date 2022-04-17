@@ -37,12 +37,15 @@ const get_weather = async (lat, long)=> {
                 return(weather_obj);
             } catch(exception) {
                 process.stderr.write(`ERROR received from ${grid_data}: ${exception}\n`);
+                return("invalid request")
             }
         } catch (exception) {
             process.stderr.write(`ERROR received from ${forecast}: ${exception}\n`);
+            return("invalid request")
         }
     } catch (exception) {
         process.stderr.write(`ERROR received from ${url}: ${exception}\n`);
+        return("invalid request")
     }
 
     //  GET FORCAST OF 2KM GRID
