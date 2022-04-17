@@ -7,3 +7,6 @@ We decided to transform the area column into a binary 0 or 1 to represent fire o
 In order to find a suitutable model we tested multiple regression techniques: Randomforest, linearRegression and Randomforest out of which we chose polinomial regression
 ### accuracy
 Accuracy of our model wasn't the best with a RMSE of 0.26 and an R^2 value of ~0, we attributed this to our dataset being quite small and our limited access to live predictor metrics (temp, RH, wind, rain)
+
+## Flask server
+port 3080
