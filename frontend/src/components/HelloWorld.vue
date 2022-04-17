@@ -26,7 +26,7 @@ import { onMounted } from '@vue/runtime-core';
     </span>
     </div>
     <div class="centeredTopPadding">
-    <Button @click="this.$router.push({ name: 'view', params: {lat: -1, lng: -1} })" label="Primary" class="p-button-outlined centered" />
+    <Button @click="this.$router.push({ name: 'view', params: {lat: -1, lng: -1} })" label="Calculate Risk" class="p-button-raised p-button-text centered" />
     </div>
 
 
@@ -80,7 +80,8 @@ export default {
 
 #locationInput {
   box-shadow: 10px 5px 5px grey;
-  font-size: 40px;
+  box-sizing: content-box; height: 40px; width: 400px;
+  font-size: 28px;
   color: grey;
   border: 0.1px double rgba(0,0,0,0.4);
   padding-left: 5%;
@@ -89,8 +90,8 @@ export default {
 }
 
 #locationInput::-webkit-input-placeholder{
-  transform: scale(0.5);
-  align-items: left;
+  transform: scale(0.7);
+  transform-origin: 0% 50%;
   color: grey;
 }
 
