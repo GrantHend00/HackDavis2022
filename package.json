@@ -4,6 +4,7 @@
   "description": "hack davis 2022 project Fire Sight",
   "main": "index.js",
   "scripts": {
+    "run": "node server.js",
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
