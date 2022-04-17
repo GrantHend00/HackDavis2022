@@ -1,9 +1,8 @@
 <template>
-  <GoogleMap api-key="AIzaSyC2A2vs5L1PjZ9Q12G8fSfwxBUCTUvDyZU" style="width: 100%; height: 500px" :center="center" :zoom="15">
-    <Marker :options="{ position: center }" >
-    <InfoWindow :options="{ position: center, content: 'Hello World!' }" />
-    </Marker>
-    <InfoWindow :options="{ position: center, content: 'Hello World!' }" />
+  <GoogleMap api-key="AIzaSyC2A2vs5L1PjZ9Q12G8fSfwxBUCTUvDyZU" style="width: 100%; height: 500px" :center="center" :zoom="15" 
+    :clickableIcons=false gestureHandling="none">
+    <Marker :options="{ position: center }" />
+    <InfoWindow :options="{ position: center, content: 'Hello World!' }"/>
   </GoogleMap>
 </template>
 
@@ -29,8 +28,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-button.gm-ui-hover-effect {
-  display: none;
+div ::v-deep(.gm-ui-hover-effect) {
+  display: none !important;
 }
+
 
 </style>
