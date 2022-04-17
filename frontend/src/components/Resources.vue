@@ -5,8 +5,8 @@
 <template>
     <div class="parent">
         <div id="modelResults" class="centered">
-            <p style="font-weight:bold">
-            According to our model, there is a {{riskNum.risk*riskNum.risk*riskNum.risk*10}}% chance of a fire.
+            <p style="font-weight:bold; font-size:24px">
+            According to our model, there is a {{riskNum.risk*10}}% chance of a fire.
             </p>
         </div>
         <!-- <h1 class="centered">Information</h1>

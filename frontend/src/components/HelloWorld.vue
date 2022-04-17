@@ -91,7 +91,7 @@ export default {
           axios
           .get("https://backend-firesight.herokuapp.com/predict/lat/"+this.latitude+"/long/"+this.longitude)
           .then(res => {
-            this.riskProb = res.data.prediction[0];
+            this.riskProb = (res.data.prediction[0]*(res.data.prediction[0])*(res.data.prediction[0])).toFixed(2);
             }).then(()=>{
               this.$router.push({ name: 'view', params: {lat: this.latitude, lng: this.longitude, risk: this.riskProb}})
             })
