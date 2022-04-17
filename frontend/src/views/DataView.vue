@@ -5,14 +5,16 @@ import Resources from '../components/Resources.vue'
 
 <template>
   <div>
+  <div class="center">
     <Motion :initial="{ opacity: 0, scale: 0 }"
             :animate="{ opacity: 1, scale: 1, transition: { duration: 1 } }"
     >
       <Display v-bind="{lat: $route.params.lat, lng: $route.params.lng, risk: $route.params.risk }"/>
     </Motion>
     <Resources class="centeredTopPadding" v-bind="{risk: $route.params.risk}"/>
+  </div>
     <div class="centeredTopPadding">
-      <Button @click="this.$router.push({ name: 'home'})" label="Return to Home" class="p-button-raised centered footer" />
+      <Button @click="this.$router.push({ name: 'home'})" label="Return to Home" class="p-button-raised p-button-primary centered footer" />
     </div>
   </div>
 </template>
@@ -53,4 +55,7 @@ import Resources from '../components/Resources.vue'
     text-align: center;
 }
 
+.center {
+  padding-top:7%
+}
 </style>

@@ -5,18 +5,18 @@
 <template>
     <div class="parent">
         <div id="modelResults" class="centered">
-            <p>
-            According to our model, there is a {{riskNum.risk*100}}% chance of a fire
+            <p style="font-weight:bold">
+            According to our model, there is a {{riskNum.risk*100}}% chance of a fire.
             </p>
         </div>
-        <h1 class="centered">Information</h1>
+        <!-- <h1 class="centered">Information</h1>
         <div class="wrapper">
             <div class="column centered">
                 <Button @click="this.$router.push({ name: 'usfire'})" label="U.S. Fire Administration" class="p-button p-button-link white"/> 
             </div>
             <div class="column centered">2</div>
             <div class="column centered">3</div>
-        </div>
+        </div> -->
     </div>
 </template>
 

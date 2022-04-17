@@ -2,13 +2,14 @@
   <GoogleMap api-key="AIzaSyC2A2vs5L1PjZ9Q12G8fSfwxBUCTUvDyZU" style="width: 100%; height: 500px" :center="center" :zoom="15" 
     :clickableIcons=false gestureHandling="none">
     <Marker :options="{ position: center }" />
-    <InfoWindow :options="{ position: center, content:  '<div style=color:red;font-size:40px;font-weight:bold>{{riskNum.risk}}%</div>' }" />
+    <InfoWindow :options="{ position: center, content:  '<div onload=showRisk() style=color:red;font-size:40px;font-weight:bold>%</div>' }" />
   </GoogleMap>
 </template>
 
 <script>
 import { defineComponent } from "vue";
 import { GoogleMap, Marker, InfoWindow } from "vue3-google-map";
+
 
 export default defineComponent({
   components: { GoogleMap, Marker, InfoWindow },
@@ -34,11 +35,6 @@ export default defineComponent({
 <style scoped>
 div ::v-deep(.gm-ui-hover-effect) {
   display: none !important;
-}
-
-.percentageRed {
-  font-size: 20px;
-  color: red;
 }
 
 </style>
