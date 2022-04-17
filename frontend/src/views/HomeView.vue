@@ -5,3 +5,12 @@ import HelloWorld from '../components/HelloWorld.vue';
 <template>
   <HelloWorld />
 </template>
+
+<script>
+  export default {
+      beforeCreate: function() {
+          document.body.className = 'home';
+      }
+  }
+</script>
+

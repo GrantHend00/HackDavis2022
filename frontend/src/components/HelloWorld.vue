@@ -10,7 +10,7 @@ import { onMounted } from '@vue/runtime-core';
 
 <template>
   <div class="centered">
-    <img id="logo centered" src="..\assets\firesight.png">
+    <img class="logo centered medium" src="..\assets\firesight.png">
     <div class="centered margin-bottom">
       <span class="p-input-icon-left p-input-icon-right">
         <i class="pi pi-search" />
@@ -26,7 +26,7 @@ import { onMounted } from '@vue/runtime-core';
       </span>
     </div>
     <div class="centeredTopPadding">
-    <Button @click="this.$router.push({ name: 'view', params: {lat: -1, lng: -1} })" label="Calculate Risk" class="p-button-raised p-button-text centered" />
+    <Button @click="this.$router.push({ name: 'view', params: {lat: -1, lng: -1} })" label="Calculate Risk" class="p-button p-component p-button-raised white" />
     </div>
     <!-- A single page / github md file link to information about the model. -->
     <div id="footer">About The Model</div>
@@ -81,6 +81,15 @@ export default {
 
 <style scoped>
 
+.medium {
+  width: 500px;
+  height: 500px;
+}
+
+.white {
+  background-color: white;
+  color: black
+}
 .margin-bottom {
   margin-bottom: 25px;
 }
