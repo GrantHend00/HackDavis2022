@@ -1,5 +1,6 @@
 <script setup>
 import Display from '../components/Display.vue';
+import Resources from '../components/Resources.vue'
 </script>
 
 <template>
@@ -8,6 +9,7 @@ import Display from '../components/Display.vue';
     <div class="centeredTopPadding">
       <Button @click="this.$router.push({ name: 'home'})" label="Return" class="p-button-raised centered" />
     </div>
+    <Resources />
   </div>
 </template>
 
