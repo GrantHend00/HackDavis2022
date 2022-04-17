@@ -21,8 +21,8 @@ export default defineComponent({
   },
   setup(props) {
     console.log("Props", props )
-    let lat = (props.lat ? props.lat : "40.689247")
-    let lng = (props.lng ? props.lng : "40.689247")
+    let lat = (props.lat ? props.lat : "38.5449")
+    let lng = (props.lng ? props.lng : "-121.7405")
     const center = { lat: parseFloat(lat), lng: parseFloat(lng) };
 
     return { center };

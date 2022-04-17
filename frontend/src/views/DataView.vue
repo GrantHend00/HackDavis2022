@@ -15,7 +15,6 @@ import Display from '../components/Display.vue';
       onMounted(() => {
         const lat = route.params.lat
         const lng = route.params.lng
-        consolelog("route params lat", lat)
       })
     },
   }
