@@ -42,6 +42,7 @@ import { onMounted } from '@vue/runtime-core';
 
 <script>
 
+import axios from "axios";
 
 export default {
 
@@ -71,8 +72,15 @@ export default {
         let latitude = value.results[0].geometry.location.lat()
         console.log("Longitude of Location: ", value.results[0].geometry.location.lng())
         let longitude = value.results[0].geometry.location.lng()
-        this.$router.push({ name: 'view', params: {lat: latitude, lng: longitude}})
-      })
+
+        console.log("fetching risk prediction");
+        axios
+        .get("http://localhost:3000/predict/lat/38.5449/long/-121.7405")
+        .then(res => {
+          let riskProb = res.data.prediction[0];
+          this.$router.push({ name: 'view', params: {lat: latitude, lng: longitude, risk: riskProb}})
+          })
+        })
     })
   }
 }

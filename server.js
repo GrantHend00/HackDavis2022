@@ -1,7 +1,11 @@
 const express = require("express");
 const axios = require("axios");
+const cors = require("cors")
 const app = express();
+
 const PORT =  process.env.PORT || 3000;
+
+app.use(cors())
 
 app.get('/weather/lat/:lat/long/:long', async (req, res) => {
     // res.send(req.params)
