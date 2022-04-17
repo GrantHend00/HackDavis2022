@@ -29,7 +29,7 @@ import { onMounted } from '@vue/runtime-core';
     
     </div>
     <!-- A single page / github md file link to information about the model. -->
-    <Button @click="this.$router.push({ name: 'github'})" id="footer" label="About the Model" class="p-button p-button-link white"/> />
+    <Button @click="this.$router.push({ name: 'github'})" id="footer" label="About the Model" class="p-button p-button-link white"/>
 
 
 
