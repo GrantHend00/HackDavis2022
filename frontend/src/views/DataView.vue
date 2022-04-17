@@ -5,7 +5,11 @@ import Resources from '../components/Resources.vue'
 
 <template>
   <div>
-    <Display v-bind="{lat: $route.params.lat, lng: $route.params.lng }"/>
+    <Motion :initial="{ opacity: 0, scale: 0 }"
+            :animate="{ opacity: 1, scale: 1, transition: { duration: 1 } }"
+    >
+      <Display v-bind="{lat: $route.params.lat, lng: $route.params.lng }"/>
+    </Motion>
     <div class="centeredTopPadding">
       <Button @click="this.$router.push({ name: 'home'})" label="Return" class="p-button-raised centered" />
     </div>
@@ -15,7 +19,11 @@ import Resources from '../components/Resources.vue'
 
 <script>
   import { useRoute } from 'vue-router'; 
+  import { Motion } from "motion/vue"
+
   export default {
+      components: { Motion },
+
       beforeCreate: function() {
           document.body.className = 'data';
       },
