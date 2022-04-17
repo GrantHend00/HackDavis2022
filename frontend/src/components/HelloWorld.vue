@@ -29,7 +29,7 @@ import { onMounted } from '@vue/runtime-core';
     <Button @click="this.$router.push({ name: 'view', params: {lat: -1, lng: -1} })" label="Calculate Risk" class="p-button p-component p-button-raised white" />
     </div>
     <!-- A single page / github md file link to information about the model. -->
-    <div id="footer">About The Model</div>
+    <Button id="footer" label="About the Model" class="p-button p-button-link white"/>
 
 
 
@@ -87,8 +87,8 @@ export default {
 }
 
 .white {
-  background-color: white;
-  color: black
+  background-color: black;
+  color: white !important
 }
 .margin-bottom {
   margin-bottom: 25px;
