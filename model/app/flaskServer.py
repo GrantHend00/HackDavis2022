@@ -9,6 +9,7 @@ app = Flask(__name__)
 def predict():
     json_ = request.json
     query_df = pd.DataFrame(json_, index=[0])
+    model = joblib.load('model.pkl')
     prediction = model.predict(query_df)
     # print(query_df, prediction)
     response = jsonify({'prediction': list(prediction)})
@@ -16,5 +17,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    model = joblib.load('model.pkl')
     app.run(port=3080)

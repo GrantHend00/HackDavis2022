@@ -65,7 +65,7 @@ const get_weather = async (lat, long)=> {
 }
 
 const get_machine_data = async (lat, long)=> {
-    const url = `http://127.0.0.1:3080/getMachineData`
+    const url = `https://flask-firesight.herokuapp.com/getMachineData`
     try {
         const weatherData = await get_weather(lat, long)
         // "temp", "RH", "wind", "rain"
@@ -97,3 +97,5 @@ const get_machine_data = async (lat, long)=> {
 }
 
 app.listen(PORT, ()=> process.stdout.write(`Server is running port: ${PORT}\n`));
+
+module.exports = app;

@@ -89,7 +89,7 @@ export default {
         console.log("fetching risk prediction");
         }).then(()=> {
           axios
-          .get("http://localhost:3000/predict/lat/"+this.latitude+"/long/"+this.longitude)
+          .get("https://backend-firesight.herokuapp.com/predict/lat/"+this.latitude+"/long/"+this.longitude)
           .then(res => {
             this.riskProb = res.data.prediction[0];
             }).then(()=>{

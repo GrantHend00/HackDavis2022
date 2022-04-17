@@ -1,14 +1,19 @@
 {
   "name": " frontend",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview --port 5050"
+    "preview": "vite preview --port 5050",
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "^0.26.1",
-    "esbuild-darwin-arm64": "^0.14.36",
+    "express": "^4.17.3",
+    "force-ssl-heroku": "^1.0.2",
     "gmaps-url-signer": "^1.0.0",
     "motion": "^10.7.2",
     "primeicons": "^5.0.0",
