@@ -1,0 +1,7 @@
+Flask
+jsonify
+make_response
+pandas
+numpy
+joblib
+sklearn

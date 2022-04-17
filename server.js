@@ -53,4 +53,15 @@ const get_weather = async (lat, long)=> {
 
 }
 
+const get_machine_data = async ()=> {
+    const urlBase = `http://127.0.0.1:3080/getMachineData`
+    try {
+        axios.post(urlBase, {
+            // json data here
+        })
+    } catch (exception) {
+        process.stderr.write(`ERROR received from ${urlBase}: ${exception}\n`);
+    }
+}
+
 app.listen(PORT, ()=> process.stdout.write(`Server is running port: ${PORT}\n`));
