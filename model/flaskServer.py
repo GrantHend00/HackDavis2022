@@ -1,5 +1,6 @@
 # run "pip install -r requirements.txt to get packages"
-from flask import Flask, jsonify, make_response
+from flask import Flask, jsonify, make_response, request
+import pandas as pd
 import joblib
 
 app = Flask(__name__)
@@ -7,16 +8,11 @@ app = Flask(__name__)
 @app.route('/getMachineData', methods=['POST'])
 def predict():
     json_ = request.json
-    query_df = pd.DataFrame(json_)
+    query_df = pd.DataFrame(json_, index=[0])
     prediction = model.predict(query_df)
-    response = make_response(
-            jsonify(
-                {'prediction': list(prediction)}
-            ),
-            200,
-        )
-    response.headers["Content-Type"] = "application/json"
-    return response
+    print(query_df, prediction)
+    response = jsonify({'prediction': list(prediction)})
+    return response, 200
 
 # def hello_world():
 #     response = make_response(

@@ -10,6 +10,13 @@ app.get('/weather/lat/:lat/long/:long', async (req, res) => {
     res.json(weather_data);
 })
 
+app.get('/predict/lat/:lat/long/:long', async (req, res) => {
+    // res.send(req.params)
+    ml_data = await get_machine_data(req.params.lat, req.params.long)
+    // console.log(`Status: ${weather_data.status} ${weather_data.statusText}`);
+    res.json(ml_data);
+})
+
 const get_weather = async (lat, long)=> {
     // FIND GRIDPOINT USING LAT AND LONG
     // https://api.weather.gov/points/{latitude},{longitude}
@@ -53,15 +60,31 @@ const get_weather = async (lat, long)=> {
 
 }
 
-const get_machine_data = async ()=> {
+const get_machine_data = async (lat, long)=> {
     const urlBase = `http://127.0.0.1:3080/getMachineData`
-    try {
-        axios.post(urlBase, {
-            // json data here
-        })
-    } catch (exception) {
-        process.stderr.write(`ERROR received from ${urlBase}: ${exception}\n`);
+    const weatherData = await get_weather(lat, long)
+    // "temp", "RH", "wind", "rain"
+    console.log(weatherData)
+    let temp = weatherData.forecast.temperature.value
+    let RH = weatherData.forecast.relativeHumidity.value
+    let wind = weatherData.forecast.windSpeed.value
+    let rain = weatherData.forecast.quantitativePrecipitation.value
+    let input = {
+        temp,
+        RH,
+        wind,
+        rain,
     }
+    console.log(input)
+    return axios.post(urlBase, input)
+            .then(function (response) {
+            console.log(response);
+            return response.data
+            })
+        .catch(function (error) {
+        console.log(error);
+        return(error)
+        });
 }
 
 app.listen(PORT, ()=> process.stdout.write(`Server is running port: ${PORT}\n`));
