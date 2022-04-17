@@ -2,7 +2,9 @@
   <GoogleMap api-key="AIzaSyC2A2vs5L1PjZ9Q12G8fSfwxBUCTUvDyZU" style="width: 100%; height: 500px" :center="center" :zoom="15" 
     :clickableIcons=false gestureHandling="none">
     <Marker :options="{ position: center }" />
-    <InfoWindow :options="{ position: center, content:  '<div style=color:red;font-size:40px;font-weight:bold></div>' }" />
+    <InfoWindow v-if="riskLevel === 'High'" :options="{ position: center, content:  '<div style=color:red;font-size:40px;font-weight:bold>High Risk</div>' }" />
+    <InfoWindow v-else-if="riskLevel === 'Medium'" :options="{ position: center, content:  '<div style=color:yellow;font-size:40px;font-weight:bold>Medium Risk</div>' }" />
+    <InfoWindow v-else :options="{ position: center, content:  '<div style=color:green;font-size:40px;font-weight:bold>Low Risk</div>' }" />
   </GoogleMap>
 </template>
 
@@ -11,6 +13,11 @@ import { defineComponent } from "vue";
 import { GoogleMap, Marker, InfoWindow } from "vue3-google-map";
 
 export default defineComponent({
+  data() {
+    return {
+      riskLevel: "Null"
+    }
+  },
   components: { GoogleMap, Marker, InfoWindow },
   props: {
     lat: String,
@@ -25,6 +32,13 @@ export default defineComponent({
 
     let risk = (props.risk ? props.risk : "0")
     const riskNum = { risk: parseFloat(risk) };
+
+    if(riskNum.risk <= 5)
+      this.riskLevel = "Low";
+    else if(riskNum.risk > 5 && riskNum.risk <= 10)
+      this.riskLevel = "Medium";
+    else  
+      this.riskLevel = "High"
 
     return { center, riskNum };
   },
