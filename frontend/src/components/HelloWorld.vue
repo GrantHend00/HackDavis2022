@@ -55,7 +55,18 @@ export default {
     );
 
     autocomplete.addListener("place_changed", () => {
-      console.log(autocomplete.getPlace());
+      let place = autocomplete.getPlace();
+      console.log("Inputted place: ", place);
+
+      console.log("formatted address: ", place.formatted_address)
+
+      const getCoords = new google.maps.Geocoder().geocode({
+        address: place.formatted_address
+      }).then((value) => {
+        console.log("Latitue of Location: ", value.results[0].geometry.location.lat())
+        console.log("Longitude of Location: ", value.results[0].geometry.location.lng())
+      })
+
     })
   }
 }
