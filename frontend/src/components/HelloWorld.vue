@@ -75,7 +75,7 @@ export default {
 
         console.log("fetching risk prediction");
         axios
-        .get("http://localhost:3000/predict/lat/38.5449/long/-121.7405")
+        .get("http://localhost:3000/predict/lat/"+latitude+"/long/"+longitude)
         .then(res => {
           let riskProb = res.data.prediction[0];
           this.$router.push({ name: 'view', params: {lat: latitude, lng: longitude, risk: riskProb}})
