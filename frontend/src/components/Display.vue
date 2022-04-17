@@ -2,7 +2,7 @@
   <GoogleMap api-key="AIzaSyC2A2vs5L1PjZ9Q12G8fSfwxBUCTUvDyZU" style="width: 100%; height: 500px" :center="center" :zoom="15" 
     :clickableIcons=false gestureHandling="none">
     <Marker :options="{ position: center }" />
-    <InfoWindow :options="{ position: center, content: 'Hello World!' }"/>
+    <InfoWindow :options="{ position: center, content:  '<div style=color:red;font-size:40px;font-weight:bold>{{riskNum.risk}}%</div>' }" />
   </GoogleMap>
 </template>
 
@@ -14,7 +14,8 @@ export default defineComponent({
   components: { GoogleMap, Marker, InfoWindow },
   props: {
     lat: String,
-    lng: String
+    lng: String,
+    risk: String
   },
   setup(props) {
     console.log("Props", props )
@@ -22,7 +23,10 @@ export default defineComponent({
     let lng = (props.lng ? props.lng : "-121.7405")
     const center = { lat: parseFloat(lat) + 0.001, lng: parseFloat(lng) };
 
-    return { center };
+    let risk = (props.risk ? props.risk : "0")
+    const riskNum = { risk: parseFloat(risk) };
+
+    return { center, riskNum };
   },
 });
 </script>
@@ -32,5 +36,9 @@ div ::v-deep(.gm-ui-hover-effect) {
   display: none !important;
 }
 
+.percentageRed {
+  font-size: 20px;
+  color: red;
+}
 
 </style>

@@ -8,9 +8,9 @@ import Resources from '../components/Resources.vue'
     <Motion :initial="{ opacity: 0, scale: 0 }"
             :animate="{ opacity: 1, scale: 1, transition: { duration: 1 } }"
     >
-      <Display v-bind="{lat: $route.params.lat, lng: $route.params.lng }"/>
+      <Display v-bind="{lat: $route.params.lat, lng: $route.params.lng, risk: $route.params.risk }"/>
     </Motion>
-    <Resources v-bind="{risk: $route.params.risk}"/>
+    <Resources class="centeredTopPadding" v-bind="{risk: $route.params.risk}"/>
     <div class="centeredTopPadding">
       <Button @click="this.$router.push({ name: 'home'})" label="Return to Home" class="p-button-raised centered footer" />
     </div>
