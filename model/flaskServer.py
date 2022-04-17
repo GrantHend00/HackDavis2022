@@ -10,19 +10,10 @@ def predict():
     json_ = request.json
     query_df = pd.DataFrame(json_, index=[0])
     prediction = model.predict(query_df)
-    print(query_df, prediction)
+    # print(query_df, prediction)
     response = jsonify({'prediction': list(prediction)})
     return response, 200
 
-# def hello_world():
-#     response = make_response(
-#                 jsonify(
-#                     {"message": "Hello"}
-#                 ),
-#                 200,
-#             )
-#     response.headers["Content-Type"] = "application/json"
-#     return response
 
 if __name__ == '__main__':
     model = joblib.load('model.pkl')
