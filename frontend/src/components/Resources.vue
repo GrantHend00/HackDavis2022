@@ -4,6 +4,9 @@
 
 <template>
     <div class="parent">
+        <div id="modelResults" class="centered">
+            According to our model, there is a {percentage} chance of a fire
+        </div>
         <h1 class="centered">Information</h1>
         <div class="wrapper">
             <div class="column centered">
