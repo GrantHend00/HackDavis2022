@@ -11,23 +11,25 @@ import { onMounted } from '@vue/runtime-core';
 <template>
   <div class="centered">
     <img id="logo centered" src="..\assets\firesight.png">
-    <div class="centered">
-    <span class="p-input-icon-left p-input-icon-right">
-    <i class="pi pi-search" />
-    <input
-      id="locationInput" 
-      type="text" 
-      @input="$emit('update:city', $event.target.value)"
-      :value="city"
-      placeholder="Enter Location..." 
-      ref="cityRef"
-    />
-    <i class="pi pi-map-marker" />
-    </span>
+    <div class="centered margin-bottom">
+      <span class="p-input-icon-left p-input-icon-right">
+        <i class="pi pi-search" />
+          <input
+            id="locationInput" 
+            type="text" 
+            @input="$emit('update:city', $event.target.value)"
+            :value="city"
+            placeholder="Enter Location..." 
+            ref="cityRef"
+          />
+        <i class="pi pi-map-marker" />
+      </span>
     </div>
     <div class="centeredTopPadding">
     <Button @click="this.$router.push({ name: 'view', params: {lat: -1, lng: -1} })" label="Calculate Risk" class="p-button-raised p-button-text centered" />
     </div>
+    <!-- A single page / github md file link to information about the model. -->
+    <div id="footer">About The Model</div>
 
 
 
@@ -39,6 +41,7 @@ import { onMounted } from '@vue/runtime-core';
 </template>
 
 <script>
+
 
 export default {
 
@@ -77,6 +80,18 @@ export default {
 </script>
 
 <style scoped>
+
+.margin-bottom {
+  margin-bottom: 25px;
+}
+
+#footer {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+}
 
 #locationInput {
   box-shadow: 10px 5px 5px grey;
