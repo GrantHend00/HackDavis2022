@@ -10,7 +10,7 @@ import Resources from '../components/Resources.vue'
     >
       <Display v-bind="{lat: $route.params.lat, lng: $route.params.lng }"/>
     </Motion>
-    <Resources />
+    <Resources v-bind="{risk: $route.params.risk}"/>
     <div class="centeredTopPadding">
       <Button @click="this.$router.push({ name: 'home'})" label="Return to Home" class="p-button-raised centered footer" />
     </div>
@@ -33,8 +33,9 @@ import Resources from '../components/Resources.vue'
         onMounted(() => {
           const lat = route.params.lat
           const lng = route.params.lng
+          const risk = route.params.risk
         })
-    },
+    }
   }
 </script>
 

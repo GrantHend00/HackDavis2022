@@ -5,7 +5,9 @@
 <template>
     <div class="parent">
         <div id="modelResults" class="centered">
-            According to our model, there is a {percentage} chance of a fire
+            <p>
+            According to our model, there is a {{riskNum.risk*100}}% chance of a fire
+            </p>
         </div>
         <h1 class="centered">Information</h1>
         <div class="wrapper">
@@ -17,6 +19,25 @@
         </div>
     </div>
 </template>
+
+<script>
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  props: {
+    risk: String,
+  },
+  setup(props) {
+    console.log("Props2", props )
+
+    let risk = (props.risk ? props.risk : "0")
+    const riskNum = { risk: parseFloat(risk) };
+
+    console.log("risk", riskNum.risk )
+    return { riskNum };
+  },
+});
+</script>
 
 <style scoped>
 .parent, .centered {

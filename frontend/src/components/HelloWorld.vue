@@ -12,7 +12,7 @@ import { onMounted } from '@vue/runtime-core';
   <div class="centered">
     <img class="logo centered medium" src="..\assets\firesight.png">
     <div class="centered margin-bottom">
-      <span class="p-input-icon-left p-input-icon-right">
+      <span v-if="!loading && !error" class="p-input-icon-left p-input-icon-right">
         <i class="pi pi-search" />
           <input
             id="locationInput" 
@@ -24,6 +24,8 @@ import { onMounted } from '@vue/runtime-core';
           />
         <i class="pi pi-map-marker" />
       </span>
+      <i v-else-if="loading && !error" class="pi pi-spin pi-spinner" style="color: white; font-size:4rem"/>
+      <div v-else style="color:white">Your city is not supported at this time.</div>
     </div>
     <div class="centeredTopPadding">
     
@@ -42,9 +44,19 @@ import { onMounted } from '@vue/runtime-core';
 
 <script>
 
+import axios from "axios";
 
 export default {
 
+  data() {
+    return {
+      latitude: 0,
+      longitude: 0,
+      riskProb: 0,
+      loading: false,
+      error: false
+      }
+  },
   mounted() {
     const autocomplete = new google.maps.places.Autocomplete(
       this.$refs["cityRef"],
@@ -64,15 +76,30 @@ export default {
 
       console.log("formatted address: ", place.formatted_address)
 
+      this.loading = true;
+
       const getCoords = new google.maps.Geocoder().geocode({
         address: place.formatted_address
       }).then((value) => {
         console.log("Latitue of Location: ", value.results[0].geometry.location.lat())
-        let latitude = value.results[0].geometry.location.lat()
+        this.latitude = value.results[0].geometry.location.lat()
         console.log("Longitude of Location: ", value.results[0].geometry.location.lng())
-        let longitude = value.results[0].geometry.location.lng()
-        this.$router.push({ name: 'view', params: {lat: latitude, lng: longitude}})
-      })
+        this.longitude = value.results[0].geometry.location.lng()
+
+        console.log("fetching risk prediction");
+        }).then(()=> {
+          axios
+          .get("http://localhost:3000/predict/lat/"+this.latitude+"/long/"+this.longitude)
+          .then(res => {
+            this.riskProb = res.data.prediction[0];
+            }).then(()=>{
+              this.$router.push({ name: 'view', params: {lat: this.latitude, lng: this.longitude, risk: this.riskProb}})
+            })
+          .catch(res => {
+            console.log("error", res);
+            this.error = true;
+          })          
+        })
     })
   }
 }

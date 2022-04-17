@@ -1,7 +1,11 @@
 const express = require("express");
 const axios = require("axios");
+const cors = require("cors")
 const app = express();
+
 const PORT =  process.env.PORT || 3000;
+
+app.use(cors())
 
 app.get('/weather/lat/:lat/long/:long', async (req, res) => {
     // res.send(req.params)
@@ -25,9 +29,9 @@ const get_weather = async (lat, long)=> {
     let url = `${urlBase}points/${lat},${long}`
     try {
         const pointData = await axios.get(url);
-        let forecast = pointData.data.properties.forecastHourly
-        let grid_data = pointData.data.properties.forecastGridData
-        console.log(forecast)
+        let forecast = pointData.data.properties.forecastHourly;
+        let grid_data = pointData.data.properties.forecastGridData;
+        console.log(forecast);
         try {
             const weatherData = await axios.get(forecast);
             weather_obj.forecast = weatherData.data.properties.periods[0];
@@ -36,23 +40,23 @@ const get_weather = async (lat, long)=> {
                 const gridData = await axios.get(grid_data);
                 for (let [key, value] of Object.entries(gridData.data.properties)) {
                     if(value.values) {
-                        weather_obj.forecast[key] = value.values[0]
+                        weather_obj.forecast[key] = value.values[0];
                     } else {
-                        weather_obj.forecast[key] = value
+                        weather_obj.forecast[key] = value;
                     }
                 }
                 return(weather_obj);
             } catch(exception) {
                 process.stderr.write(`ERROR received from ${grid_data}: ${exception}\n`);
-                return("invalid request")
+                return({"request": "invalid request"})
             }
         } catch (exception) {
             process.stderr.write(`ERROR received from ${forecast}: ${exception}\n`);
-            return("invalid request")
+            return({"request": "invalid request"})
         }
     } catch (exception) {
         process.stderr.write(`ERROR received from ${url}: ${exception}\n`);
-        return("invalid request")
+        return({"request": "invalid request"})
     }
 
     //  GET FORCAST OF 2KM GRID
@@ -61,30 +65,35 @@ const get_weather = async (lat, long)=> {
 }
 
 const get_machine_data = async (lat, long)=> {
-    const urlBase = `http://127.0.0.1:3080/getMachineData`
-    const weatherData = await get_weather(lat, long)
-    // "temp", "RH", "wind", "rain"
-    console.log(weatherData)
-    let temp = weatherData.forecast.temperature.value
-    let RH = weatherData.forecast.relativeHumidity.value
-    let wind = weatherData.forecast.windSpeed.value
-    let rain = weatherData.forecast.quantitativePrecipitation.value
-    let input = {
-        temp,
-        RH,
-        wind,
-        rain,
+    const url = `http://127.0.0.1:3080/getMachineData`
+    try {
+        const weatherData = await get_weather(lat, long)
+        // "temp", "RH", "wind", "rain"
+        console.log(weatherData)
+        let temp = weatherData.forecast.temperature.value
+        let RH = weatherData.forecast.relativeHumidity.value
+        let wind = weatherData.forecast.windSpeed.value
+        let rain = weatherData.forecast.quantitativePrecipitation.value
+        let input = {
+            temp,
+            RH,
+            wind,
+            rain,
+        }
+        console.log(input)
+        return axios.post(url, input)
+                .then(function (response) {
+                console.log(response);
+                return response.data
+                })
+            .catch(function (error) {
+            console.log(error);
+            return({"request": "invalid request"})
+            });
+    } catch(exception) {
+        process.stderr.write(`ERROR received from ${url}: ${exception}\n`);
+        return({"request": "invalid request"})
     }
-    console.log(input)
-    return axios.post(urlBase, input)
-            .then(function (response) {
-            console.log(response);
-            return response.data
-            })
-        .catch(function (error) {
-        console.log(error);
-        return(error)
-        });
 }
 
 app.listen(PORT, ()=> process.stdout.write(`Server is running port: ${PORT}\n`));
