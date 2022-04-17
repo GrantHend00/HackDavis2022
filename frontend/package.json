@@ -7,11 +7,14 @@
     "preview": "vite preview --port 5050"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "esbuild-darwin-arm64": "^0.14.36",
+    "gmaps-url-signer": "^1.0.0",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.5",
     "vue": "^3.2.31",
-    "vue-router": "^4.0.14"
+    "vue-router": "^4.0.14",
+    "vue3-google-map": "^0.10.0"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.12.3",

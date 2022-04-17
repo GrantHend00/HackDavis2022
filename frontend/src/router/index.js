@@ -13,7 +13,7 @@ const router = createRouter({
     {
       path:'/view',
       name: 'view',
-      component: DataView
+      component: DataView,
     },
   ]
 })
