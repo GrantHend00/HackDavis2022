@@ -22,7 +22,16 @@ const router = createRouter({
       beforeEnter(to, from, next) {
         window.location.href = "https://github.com/GrantHend00/HackDavis2022/blob/main/model/README.md";
       }
+    },
+    {
+      path: '/usfire',
+      name: 'usfire',
+      component: DataView,
+      beforeEnter(to, from, next) {
+        window.location.href = "https://www.usfa.fema.gov/";
+      }
     }
+
   ]
 })
 
