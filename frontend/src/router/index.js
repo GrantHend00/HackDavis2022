@@ -14,6 +14,14 @@ const router = createRouter({
       path:'/view',
       name: 'view',
       component: DataView,
+    },
+    {
+      path: '/github',
+      name: 'github',
+      component: DataView,
+      beforeEnter(to, from, next) {
+        window.location.href = "https://github.com/GrantHend00/HackDavis2022/blob/main/model/README.md";
+      }
     }
   ]
 })

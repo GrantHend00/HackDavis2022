@@ -26,15 +26,15 @@ import { onMounted } from '@vue/runtime-core';
       </span>
     </div>
     <div class="centeredTopPadding">
-    <Button @click="this.$router.push({ name: 'view', params: {lat: -1, lng: -1} })" label="Calculate Risk" class="p-button p-component p-button-raised white" />
+    
     </div>
     <!-- A single page / github md file link to information about the model. -->
-    <Button id="footer" label="About the Model" class="p-button p-button-link white"/>
+    <Button @click="this.$router.push({ name: 'github'})" id="footer" label="About the Model" class="p-button p-button-link white"/> />
 
 
 
 <!-- <AutoComplete :multiple="true" v-model="selectedCountries" 
-	:suggestions="filteredCountriesMultiple" 
+	:suggestions="filteredCountrie<Button @click="this.$router.push({ name: 'view', params: {lat: -1, lng: -1} })" label="Calculate Risk" class="p-button p-component p-button-raised white" />sMultiple" 
 	@complete="searchCountryMultiple($event)" field="name" /> -->
     </div>
 
