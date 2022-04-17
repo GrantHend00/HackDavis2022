@@ -1,3 +1,4 @@
+# run "pip install -r requirements.txt to get packages"
 from flask import Flask, jsonify, make_response
 
 app = Flask(__name__)
