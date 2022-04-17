@@ -10,6 +10,12 @@ body.home {
     animation: gradient 15s ease infinite;
 }
 
+body.data {
+  background: linear-gradient(
+    #757f9a,
+    #d7dde8);
+}
+
 .centered {
   text-align: center;
 }

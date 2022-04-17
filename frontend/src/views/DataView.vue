@@ -17,7 +17,7 @@ import Resources from '../components/Resources.vue'
   import { useRoute } from 'vue-router'; 
   export default {
       beforeCreate: function() {
-          document.body.className = '';
+          document.body.className = 'data';
       },
       setup() {
         const route = useRoute()
@@ -35,7 +35,6 @@ import Resources from '../components/Resources.vue'
 .centeredTopPadding {
     padding-top: 2%;
     text-align: center;
-    background-color: white;
 }
 
 </style>
