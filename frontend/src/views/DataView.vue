@@ -6,10 +6,10 @@ import Resources from '../components/Resources.vue'
 <template>
   <div>
     <Display v-bind="{lat: $route.params.lat, lng: $route.params.lng }"/>
-    <div class="centeredTopPadding">
-      <Button @click="this.$router.push({ name: 'home'})" label="Return" class="p-button-raised centered" />
-    </div>
     <Resources />
+    <div class="centeredTopPadding">
+      <Button @click="this.$router.push({ name: 'home'})" label="Return to Home" class="p-button-raised centered footer" />
+    </div>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ import Resources from '../components/Resources.vue'
   import { useRoute } from 'vue-router'; 
   export default {
       beforeCreate: function() {
-          document.body.className = '';
+          document.body.className = 'data';
       },
       setup() {
         const route = useRoute()
@@ -32,10 +32,16 @@ import Resources from '../components/Resources.vue'
 
 <style scoped>
 
+.footer {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+}
 .centeredTopPadding {
     padding-top: 2%;
     text-align: center;
-    background-color: white;
 }
 
 </style>

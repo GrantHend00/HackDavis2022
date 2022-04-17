@@ -4,9 +4,14 @@
 
 <template>
     <div class="parent">
+        <div id="modelResults" class="centered">
+            According to our model, there is a {percentage} chance of a fire
+        </div>
         <h1 class="centered">Information</h1>
         <div class="wrapper">
-            <div class="column centered">1</div>
+            <div class="column centered">
+                <Button @click="this.$router.push({ name: 'usfire'})" label="U.S. Fire Administration" class="p-button p-button-link white"/> 
+            </div>
             <div class="column centered">2</div>
             <div class="column centered">3</div>
         </div>
