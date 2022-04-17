@@ -1,11 +1,28 @@
-<script setup>
-</script>
-
-
 <template>
-<div>
-    DISPLAY HELLO
-    {{$route.params.lat}}
-    {{$route.params.lng}}
-</div>
+  <GoogleMap api-key="AIzaSyC2A2vs5L1PjZ9Q12G8fSfwxBUCTUvDyZU" style="width: 100%; height: 500px" :center="center" :zoom="15">
+    <Marker :options="{ position: center }" />
+  </GoogleMap>
 </template>
+
+<script>
+import { defineComponent } from "vue";
+import { GoogleMap, Marker } from "vue3-google-map";
+
+export default defineComponent({
+  components: { GoogleMap, Marker },
+  props: {
+    lat: String,
+    lng: String
+  },
+  setup(props) {
+    console.log("Props", props )
+    let lat = (props.lat ? props.lat : "40.689247")
+    let lng = (props.lng ? props.lng : "40.689247")
+    const center = { lat: parseFloat(lat), lng: parseFloat(lng) };
+
+    return { center };
+  },
+});
+
+
+</script>

@@ -41,6 +41,7 @@ import { onMounted } from '@vue/runtime-core';
 <script>
 
 export default {
+
   mounted() {
     const autocomplete = new google.maps.places.Autocomplete(
       this.$refs["cityRef"],
@@ -67,9 +68,8 @@ export default {
         let latitude = value.results[0].geometry.location.lat()
         console.log("Longitude of Location: ", value.results[0].geometry.location.lng())
         let longitude = value.results[0].geometry.location.lng()
-        this.$router.push({ name: 'view', params: {lat: latitude, lng: longitude} })
+        this.$router.push({ name: 'view', params: {lat: latitude, lng: longitude}})
       })
-
     })
   }
 }
